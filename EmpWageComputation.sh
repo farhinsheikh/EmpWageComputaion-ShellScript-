@@ -11,10 +11,7 @@ numWorkingDays=20
 totalEmpHr=0
 totalWorkingDays=0
 
-while [[ $totalEmpHr -lt $maxHrsInMonth && $totalWorkingDays -lt $numWorkingDays ]]
-do
-      ((totalWorkingDays++))
-   empCheck=$((RANDOM % 3))
+function getWorkHrs() {
       case $empCheck in
          $isFulltime)
                empHrs=8
@@ -26,6 +23,14 @@ do
          empHrs=0
                ;;
       esac
+      echo $empHrs
+}
+
+while [[ $totalEmpHr -lt $maxHrsInMonth && $totalWorkingDays -lt $numWorkingDays ]]
+do
+      ((totalWorkingDays++))
+      empCheck=$((RANDOM % 3))
+      empHrs="$( getWorkHrs $empCheck )"
       totalEmpHr=$(($totalEmpHr+$empHrs))
 done
 
