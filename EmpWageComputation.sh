@@ -12,6 +12,7 @@ totalEmpHr=0
 totalWorkingDays=0
 
 function getWorkHrs() {
+
       case $empCheck in
          $isFulltime)
                empHrs=8
@@ -32,6 +33,9 @@ do
       empCheck=$((RANDOM % 3))
       empHrs="$( getWorkHrs $empCheck )"
       totalEmpHr=$(($totalEmpHr+$empHrs))
+      dailyWage[$totalWorkingDays]=$(($empHrs*$empRatePerHr))
+
 done
 
 totalSalary=$(($totalEmpHr*$empRatePerHr))
+echo ${dailyWage[@]}
