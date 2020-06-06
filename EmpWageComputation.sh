@@ -30,4 +30,3 @@ do
 done
 
 totalSalary=$(($totalEmpHr*$empRatePerHr))
-
