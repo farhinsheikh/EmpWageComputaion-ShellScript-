@@ -4,11 +4,17 @@ echo "Welcome to employee wage  computation program on master branch"
 
 isPartTime=1
 isFulltime=2
+maxHrsInMonth=10
 empRatePerHr=20
 numWorkingDays=20
-for (( day=1; day<=$numWorkingDays; day++ ))
+
+totalEmpHr=0
+totalWorkingDays=0
+
+while [[ $totalEmpHr -lt $maxHrsInMonth && $totalWorkingDays -lt $numWorkingDays ]]
 do
-   empCheck=$((RANDOM % 2))
+      ((totalWorkingDays++))
+   empCheck=$((RANDOM % 3))
       case $empCheck in
          $isFulltime)
                empHrs=8
@@ -20,7 +26,7 @@ do
          empHrs=0
                ;;
       esac
-      salary=$(($empHrs*$empRatePerHr))
-      totalSalary=$(($totalSalary+$salary))
+      totalEmpHr=$(($totalEmpHr+$empHrs))
 done
 
+totalSalary=$(($totalEmpHr*$empRatePerHr))
